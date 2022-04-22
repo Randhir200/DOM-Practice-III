@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Masai Calculator</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      width: 50%;
+      margin: auto;
+      /* border: 1px solid black; */
+    }
+    h1 {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 38px;
+      color: rgb(18, 167, 167);
+    }
+    #clc {
+      width: 40%;
+      border: 1px solid white;
+      margin: auto;
+      margin-top: 40px;
+      height: 300px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      border-radius: 6px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+      grid-template-areas: 'dsply dsply dsply dsply';
+      /* gap: 10px; */
+      padding: 60px 30px 30px 30px;
+    }
+    #clc > div {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+        rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+      /* padding: 10px; */
+      margin: 5px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    }
+    #clc > div:hover {
+      background-color: teal;
+    }
+    #clc > div:first-child:hover {
+      background-color: white;
+    }
+    #clc > div:nth-child(9) {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    #clc > div:first-child {
+      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+      grid-area: dsply;
+      height: 70%;
+      font-size: 20px;
+    }
+    .black {
+      background-color: black;
+      color: white;
+    }
+    .red {
+      background-color: red;
+      color: white;
+    }
+  </style>
+  <body>
+    <h1>Masai Calculator</h1>
+    <div id="clc">
+      <div id="display"></div>
+      <div>
+        <span>1</span>
+      </div>
+      <div>
+        <span>2</span>
+      </div>
+      <div>
+        <span>3</span>
+      </div>
+      <div class="black">
+        <span>+</span>
+      </div>
+      <div>
+        <span>4</span>
+      </div>
+      <div>
+        <span>5</span>
+      </div>
+      <div>
+        <span>6</span>
+      </div>
+      <div class="black">
+        <span>-</span>
+      </div>
+
+      <div>
+        <span>7</span>
+      </div>
+      <div>
+        <span>8</span>
+      </div>
+      <div>
+        <span>9</span>
+      </div>
+      <div class="black">
+        <span>*</span>
+      </div>
+
+      <div class="red">
+        <span>C</span>
+      </div>
+      <div class="black">
+        <span>0</span>
+      </div>
+      <div class="black">
+        <span>=</span>
+      </div>
+      <div class="black">
+        <span>/</span>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  var display = document.getElementById('display');
+  var box = document.querySelectorAll('#clc>div');
+  for (var i = 0; i < box.length; i++) {
+    box[i].addEventListener('click', getNumber);
+    box[i].style.cursor = 'pointer';
+  }
+  var bag = '';
+  function getNumber() {
+    var value = event.target.innerText;
+    if (value == 'C') {
+      display.innerText = '';
+      bag = '';
+    } else if (value == '=') {
+      display.innerText = eval(bag);
+      bag = eval(bag);
+    } else {
+      bag += value;
+      display.innerText = bag;
+    }
+  }
+</script>
